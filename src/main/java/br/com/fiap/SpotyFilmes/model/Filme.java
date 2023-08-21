@@ -1,23 +1,23 @@
 package br.com.fiap.SpotyFilmes.model;
 
-import java.util.ArrayList;
-
-public class Categoria {
+public class Filme {
     private int id;
     private String nome;
     private String url_imagem;
     private String descricao;
     private int classificacao;
+    private Categoria categoria;
     
-    public Categoria() {
+    public Filme() {
     }
 
-    public Categoria(int id, String nome, String url_imagem, String descricao, int classificacao) {
+    public Filme(int id, String nome, String url_imagem, String descricao, int classificacao, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.url_imagem = url_imagem;
         this.descricao = descricao;
         this.classificacao = classificacao;
+        this.categoria = categoria;
     }
 
     public int getId() {
@@ -60,6 +60,14 @@ public class Categoria {
         this.classificacao = classificacao;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -69,6 +77,7 @@ public class Categoria {
         result = prime * result + ((url_imagem == null) ? 0 : url_imagem.hashCode());
         result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
         result = prime * result + classificacao;
+        result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
         return result;
     }
 
@@ -80,7 +89,7 @@ public class Categoria {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Categoria other = (Categoria) obj;
+        Filme other = (Filme) obj;
         if (id != other.id)
             return false;
         if (nome == null) {
@@ -100,12 +109,17 @@ public class Categoria {
             return false;
         if (classificacao != other.classificacao)
             return false;
+        if (categoria == null) {
+            if (other.categoria != null)
+                return false;
+        } else if (!categoria.equals(other.categoria))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Categoria [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
-                + ", classificacao=" + classificacao + "]";
+        return "Filme [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
+                + ", classificacao=" + classificacao + ", categoria=" + categoria + "]";
     }
 }
