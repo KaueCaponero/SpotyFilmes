@@ -10,7 +10,7 @@ public class CategoriaController {
     
     @GetMapping("/categorias")
     public Categoria listCategorias() {
-        return new Categoria("Romance", "www.image.com/love", "Filmes de Romance", 3);
+        return new Categoria(1, "Romance", "www.image.com/love", "Filmes de Romance", 3);
     }
 
 }

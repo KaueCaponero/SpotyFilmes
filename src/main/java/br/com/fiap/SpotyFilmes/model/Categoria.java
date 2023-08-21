@@ -1,6 +1,7 @@
 package br.com.fiap.SpotyFilmes.model;
 
 public class Categoria {
+    private int id;
     private String nome;
     private String url_imagem;
     private String descricao;
@@ -9,11 +10,20 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(String nome, String url_imagem, String descricao, int classificacao) {
+    public Categoria(int id, String nome, String url_imagem, String descricao, int classificacao) {
+        this.id = id;
         this.nome = nome;
         this.url_imagem = url_imagem;
         this.descricao = descricao;
         this.classificacao = classificacao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -52,6 +62,7 @@ public class Categoria {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + id;
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((url_imagem == null) ? 0 : url_imagem.hashCode());
         result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
@@ -68,6 +79,8 @@ public class Categoria {
         if (getClass() != obj.getClass())
             return false;
         Categoria other = (Categoria) obj;
+        if (id != other.id)
+            return false;
         if (nome == null) {
             if (other.nome != null)
                 return false;
@@ -90,10 +103,8 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria [nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
+        return "Categoria [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
                 + ", classificacao=" + classificacao + "]";
     }
 
-    
-    
 }
