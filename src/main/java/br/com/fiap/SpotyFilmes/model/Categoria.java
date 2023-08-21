@@ -1,7 +1,5 @@
 package br.com.fiap.SpotyFilmes.model;
 
-import java.util.ArrayList;
-
 public class Categoria {
     private int id;
     private String nome;
