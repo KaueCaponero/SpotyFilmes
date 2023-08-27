@@ -1,16 +1,18 @@
 package br.com.fiap.SpotyFilmes.model;
 
 public class Categoria {
-    private int id;
+    private Long id;
     private String nome;
     private String url_imagem;
     private String descricao;
-    private int classificacao;
+    private Long classificacao;
+
     
     public Categoria() {
     }
 
-    public Categoria(int id, String nome, String url_imagem, String descricao, int classificacao) {
+
+    public Categoria(Long id, String nome, String url_imagem, String descricao, Long classificacao) {
         this.id = id;
         this.nome = nome;
         this.url_imagem = url_imagem;
@@ -18,57 +20,69 @@ public class Categoria {
         this.classificacao = classificacao;
     }
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getNome() {
         return nome;
     }
 
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 
     public String getUrl_imagem() {
         return url_imagem;
     }
 
+
     public void setUrl_imagem(String url_imagem) {
         this.url_imagem = url_imagem;
     }
+
 
     public String getDescricao() {
         return descricao;
     }
 
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    public int getClassificacao() {
+
+    public Long getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(int classificacao) {
+
+    public void setClassificacao(Long classificacao) {
         this.classificacao = classificacao;
     }
+
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((url_imagem == null) ? 0 : url_imagem.hashCode());
         result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-        result = prime * result + classificacao;
+        result = prime * result + ((classificacao == null) ? 0 : classificacao.hashCode());
         return result;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -79,7 +93,10 @@ public class Categoria {
         if (getClass() != obj.getClass())
             return false;
         Categoria other = (Categoria) obj;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (nome == null) {
             if (other.nome != null)
@@ -96,14 +113,20 @@ public class Categoria {
                 return false;
         } else if (!descricao.equals(other.descricao))
             return false;
-        if (classificacao != other.classificacao)
+        if (classificacao == null) {
+            if (other.classificacao != null)
+                return false;
+        } else if (!classificacao.equals(other.classificacao))
             return false;
         return true;
     }
+
 
     @Override
     public String toString() {
         return "Categoria [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
                 + ", classificacao=" + classificacao + "]";
     }
+    
+
 }

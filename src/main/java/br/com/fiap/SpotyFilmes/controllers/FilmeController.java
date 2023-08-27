@@ -11,8 +11,8 @@ public class FilmeController {
     
     @GetMapping("/filmes")
     public Filme listFilmes() {
-        Categoria categoria_filme = new Categoria(1, "Romance", "www.image.com/love", "Filmes de Romance", 3);
-        return new Filme(1, "Besouro Azul", "www.image.com/besouro-azul", "Filme da DC com a Bruna Marquezine", 4, categoria_filme);
+        Categoria categoria_filme = new Categoria(1L, "Romance", "www.image.com/love", "Filmes de Romance", 3L);
+        return new Filme(1L, "Besouro Azul", "www.image.com/besouro-azul", "Filme da DC com a Bruna Marquezine", 4L, categoria_filme);
     }
 
 }
