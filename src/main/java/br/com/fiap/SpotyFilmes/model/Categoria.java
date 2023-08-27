@@ -7,10 +7,8 @@ public class Categoria {
     private String descricao;
     private Long classificacao;
 
-    
     public Categoria() {
     }
-
 
     public Categoria(Long id, String nome, String url_imagem, String descricao, Long classificacao) {
         this.id = id;
@@ -20,56 +18,45 @@ public class Categoria {
         this.classificacao = classificacao;
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
     public String getNome() {
         return nome;
     }
-
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-
     public String getUrl_imagem() {
         return url_imagem;
     }
-
 
     public void setUrl_imagem(String url_imagem) {
         this.url_imagem = url_imagem;
     }
 
-
     public String getDescricao() {
         return descricao;
     }
-
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-
     public Long getClassificacao() {
         return classificacao;
     }
 
-
     public void setClassificacao(Long classificacao) {
         this.classificacao = classificacao;
     }
-
 
     @Override
     public int hashCode() {
@@ -82,7 +69,6 @@ public class Categoria {
         result = prime * result + ((classificacao == null) ? 0 : classificacao.hashCode());
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -121,12 +107,9 @@ public class Categoria {
         return true;
     }
 
-
     @Override
     public String toString() {
         return "Categoria [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
                 + ", classificacao=" + classificacao + "]";
     }
-    
-
 }

@@ -8,10 +8,8 @@ public class Filme {
     private Long classificacao;
     private Categoria categoria;
 
-
     public Filme() {
     }
-
 
     public Filme(Long id, String nome, String url_imagem, String descricao, Long classificacao, Categoria categoria) {
         this.id = id;
@@ -22,66 +20,53 @@ public class Filme {
         this.categoria = categoria;
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
     public String getNome() {
         return nome;
     }
-
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-
     public String getUrl_imagem() {
         return url_imagem;
     }
-
 
     public void setUrl_imagem(String url_imagem) {
         this.url_imagem = url_imagem;
     }
 
-
     public String getDescricao() {
         return descricao;
     }
-
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-
     public Long getClassificacao() {
         return classificacao;
     }
-
 
     public void setClassificacao(Long classificacao) {
         this.classificacao = classificacao;
     }
 
-
     public Categoria getCategoria() {
         return categoria;
     }
 
-
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
 
     @Override
     public int hashCode() {
@@ -95,7 +80,6 @@ public class Filme {
         result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -139,12 +123,9 @@ public class Filme {
         return true;
     }
 
-
     @Override
     public String toString() {
         return "Filme [id=" + id + ", nome=" + nome + ", url_imagem=" + url_imagem + ", descricao=" + descricao
                 + ", classificacao=" + classificacao + ", categoria=" + categoria + "]";
     }
-    
-    
 }
