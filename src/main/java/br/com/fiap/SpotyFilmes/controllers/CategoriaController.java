@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import br.com.fiap.SpotyFilmes.model.Categoria;
 import br.com.fiap.SpotyFilmes.repository.CategoriaRepository;
@@ -26,8 +25,6 @@ public class CategoriaController {
 
     @Autowired
     CategoriaRepository categoriaRepository;
-
-    List<Categoria> listaCategorias = new ArrayList<Categoria>();
 
     @GetMapping("/categorias")
     public List<Categoria> listAll() {
