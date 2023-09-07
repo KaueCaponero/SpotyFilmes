@@ -1,79 +1,80 @@
 package br.com.fiap.SpotyFilmes.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.ArrayList;
-
-
+import br.com.fiap.SpotyFilmes.model.Categoria;
 import br.com.fiap.SpotyFilmes.model.Filme;
+import br.com.fiap.SpotyFilmes.repository.CategoriaRepository;
+import br.com.fiap.SpotyFilmes.repository.FilmeRepository;
 
 @RestController
 public class FilmeController {
     
     Logger log = LoggerFactory.getLogger(getClass());
-    List<Filme> listaFilmes = new ArrayList<Filme>();
+
+    @Autowired
+    FilmeRepository filmeRepository;
+
+    @Autowired
+    CategoriaRepository categoriaRepository;
 
     @GetMapping("/filmes")
     public List<Filme> listAll() {
-       return listaFilmes;
+        return filmeRepository.findAll();
     }
 
     @GetMapping("/filmes/{id}")
     public ResponseEntity<Filme> readFilme(@PathVariable Long id) {
         log.info("Exibindo o Filme de ID: " + id);
-        var filme_buscado = listaFilmes
-                            .stream()
-                            .filter((filme) -> filme.getId().equals(id))
-                            .findFirst();
-        if (filme_buscado.isEmpty()) 
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(filme_buscado.get());
+        return ResponseEntity.ok(getFilmeById(id));
     }
 
     @PostMapping("/filmes")
     public ResponseEntity<Filme> createFilme(@RequestBody Filme novo_filme) {
-        novo_filme.setId(listaFilmes.size() + 1L);
         log.info("Cadastrando Filme: " + novo_filme);
-        listaFilmes.add(novo_filme);
+        Long id_categoria = novo_filme.getCategoria().getId();
+        Categoria categoria = categoriaRepository.findById(id_categoria)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id_categoria));
+        novo_filme.setCategoria(categoria);
+        filmeRepository.save(novo_filme);
         return ResponseEntity.status(HttpStatus.CREATED).body(novo_filme);
     }
 
     @PutMapping("/filmes/{id}")
     public ResponseEntity<Filme> updateFilme(@PathVariable Long id, @RequestBody Filme filme_atualizar){
         log.info("Atualizando o Filme de ID: " + id);
-        var filme_buscado = listaFilmes
-                            .stream()
-                            .filter((filme) -> filme.getId().equals(id))
-                            .findFirst();
-        if (filme_buscado.isEmpty()) 
-            return ResponseEntity.notFound().build();
-        listaFilmes.remove(filme_buscado.get());
+        getFilmeById(id);
         filme_atualizar.setId(id);
-        listaFilmes.add(filme_atualizar);
-        return ResponseEntity.ok(filme_atualizar); 
+        Long novaCategoriaId = filme_atualizar.getCategoria().getId();
+        Categoria novaCategoria = categoriaRepository.findById(novaCategoriaId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + novaCategoriaId));
+        filme_atualizar.setCategoria(novaCategoria);
+        filmeRepository.save(filme_atualizar);
+        return ResponseEntity.ok(filme_atualizar);
     }
 
     @DeleteMapping("/filmes/{id}")
     public ResponseEntity<Filme> deleteFilme(@PathVariable Long id) {
         log.info("Deletando o Filme de ID: " + id);
-        var filme_buscado = listaFilmes
-                            .stream()
-                            .filter((filme) -> filme.getId().equals(id))
-                            .findFirst();
-        if (filme_buscado.isEmpty()) 
-            return ResponseEntity.notFound().build();
-        listaFilmes.remove(filme_buscado.get());
-        return ResponseEntity.noContent().build();        
+        filmeRepository.delete(getFilmeById(id));
+        return ResponseEntity.noContent().build();       
+    }
+
+    private Filme getFilmeById(Long id){
+        return filmeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado com o ID: " + id));
     }
 }

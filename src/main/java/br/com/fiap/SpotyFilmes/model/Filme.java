@@ -1,11 +1,30 @@
 package br.com.fiap.SpotyFilmes.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "TB_FILME")
 public class Filme {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_FILME")
     private Long id;
+
+    @Column(name = "NM_FILME")
     private String nome;
+
+    @Column(name = "IMG_FILME")
     private String url_imagem;
+
+    @Column(name = "DS_FILME")
     private String descricao;
+
+    @Column(name = "CLS_FILME")
     private Long classificacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "CAT_FILME")
     private Categoria categoria;
 
     public Filme() {
