@@ -3,15 +3,17 @@ package br.com.fiap.SpotyFilmes.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TB_CATEGORIA")
+@Table(name = "TB_CATEGORIA", uniqueConstraints = {
+    @UniqueConstraint(name = "UK_NM_CATEGORIA", columnNames = "NM_CATEGORIA")
+})
 public class Categoria {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CATEGORIA")
+    @Column(name = "ID_CATEGORIA", nullable = false)
     private Long id;
 
-    @Column(name = "NM_CATEGORIA")
+    @Column(name = "NM_CATEGORIA", nullable = false)
     private String nome;
 
     @Column(name = "IMG_CATEGORIA")
