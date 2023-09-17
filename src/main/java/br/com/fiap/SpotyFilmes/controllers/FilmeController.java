@@ -2,8 +2,6 @@ package br.com.fiap.SpotyFilmes.controllers;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import lombok.extern.slf4j.Slf4j;
+
 import br.com.fiap.SpotyFilmes.model.Categoria;
 import br.com.fiap.SpotyFilmes.model.Filme;
 import br.com.fiap.SpotyFilmes.repository.CategoriaRepository;
 import br.com.fiap.SpotyFilmes.repository.FilmeRepository;
 
+
 @RestController
+@Slf4j
 public class FilmeController {
-    
-    Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     FilmeRepository filmeRepository;
