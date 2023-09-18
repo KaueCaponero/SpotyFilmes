@@ -1,7 +1,10 @@
 package br.com.fiap.SpotyFilmes.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +33,8 @@ public class Categoria {
     @Column(name = "DS_CATEGORIA")
     private String descricao;
 
+    @Min(value = 0, message = "O valor mínimo da classificação é 0.")
+    @Max(value = 5, message = "O valor máximo da classificação é 5.")
     @Column(name = "CLS_CATEGORIA")
     private Long classificacao;
 }
