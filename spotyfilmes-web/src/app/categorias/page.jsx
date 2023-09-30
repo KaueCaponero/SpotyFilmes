@@ -1,18 +1,25 @@
 import NavBar from "@/components/navbar";
 import Filter from "@/components/filter"
 import Button from "@/components/button";
-import Card from "@/components/card"
+import DataRow from "@/app/categorias/datarow"
 
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-export default function PageCategorias() {
+async function carregarDados() {
+  const url = "http://localhost:8080/categorias"
+  const resp = await fetch(url, {next: {revalidate: 0}})
 
-  const categoria_teste = {
-    nome: "Guardioes da Galaxia",
-    imagem: "https://proxy.olhardigital.com.br/wp-content/uploads/2023/02/o-projeto-adam-divulgacao-netflix-1.png",
-    descricao: "testsa dsdasdausid bauisbdiab sdibaiusdbiuasbd dfjiosdjfio sdiofh soidfjhios dfoisdhjofis iodf soidiosdf iosd foisd fios jdfios dofj oisd foisd jfiodiuabsidub auisbduibaisubd iuabsiudbe",
-    classificacao: 3
-  };
+  if (resp.status !== 200) {
+    alert("Erro ao buscar dados das categorias.")
+    return
+  }
+
+  return await resp.json();
+}
+
+export default async function PageCategorias() {
+
+  const categorias = await carregarDados();
 
   return (
     <>
@@ -25,7 +32,9 @@ export default function PageCategorias() {
             Cadastrar Categoria
           </Button>
         </div>
-        <Card categoria={categoria_teste}/>
+        <div className="space-y-2">
+          {categorias.map(categoria => <DataRow key={categoria.id} categoria={categoria} />)}
+        </div>
       </main>
     </>
   );

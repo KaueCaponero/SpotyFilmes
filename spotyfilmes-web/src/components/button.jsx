@@ -1,10 +1,16 @@
 import Link from "next/link";
 
-export default function Button({icon, children, ...props}) {
+export default function Button({icon, children, type="link", ...props}) {
     return (
-        <Link href="#" {...props} className="flex items-center gap-1 bg-orange-500 px-2 py-1 rounded hover:bg-orange-700 transition-colors">
-            {icon}
-            {children}
-        </Link>
+        (type === "link") ?
+            <Link href="#" {...props} className="flex items-center gap-1 bg-orange-500 px-2 py-1 rounded hover:bg-orange-700 transition-colors">
+                {icon}
+                {children}
+            </Link>
+            :
+            <button {...props} className="flex items-center gap-1 bg-orange-500 px-2 py-1 rounded hover:bg-orange-700 transition-colors">
+                {icon}
+                {children}
+            </button>
     );
 }
