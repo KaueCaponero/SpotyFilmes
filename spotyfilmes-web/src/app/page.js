@@ -1,11 +1,13 @@
 import NavBar from "@/components/navbar";
+import Filter from "@/components/filter"
 
 export default function Home() {
   return (
     <>
     <NavBar />
-    <main className="container bg-gray-800 mt-10 mx-auto rounded p-4 max-w-7xl"> 
-      <h2>Home</h2>
+    <Filter />
+    <main className="container bg-black mt-10 mx-auto rounded p-4 max-w-7xl"> 
+      <h2 className="text-xl font-bold">Home</h2>
     </main>
     </>
   );
