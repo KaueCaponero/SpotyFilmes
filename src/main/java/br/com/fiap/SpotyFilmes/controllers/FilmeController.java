@@ -35,6 +35,7 @@ public class FilmeController {
 
     @GetMapping("/filmes")
     public List<Filme> listAll() {
+        log.info("Buscando Todos os Filmes");
         return filmeRepository.findAll();
     }
 

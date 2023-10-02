@@ -1,5 +1,3 @@
 - Replicar a página de cadastro de nova categoria para filmes (além de actions)
-- Terminar aula a partir do tempo ~ 01h13m
-- Corrigir funcionamento do botão
 - Corrigir alinhamento do DataRow
 - Corrigir tamanho do input do filter

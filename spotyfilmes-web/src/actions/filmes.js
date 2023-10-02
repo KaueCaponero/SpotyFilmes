@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache"
 
 export async function create(data) {
-    const url = "http://localhost:8080/categorias"
+    const url = "http://localhost:8080/filmes"
 
     const options = {
         method: "POST",
@@ -15,7 +15,7 @@ export async function create(data) {
 
     const resp = await fetch(url, options)
 
-    if (resp.status !== 201) return {error : "Erro ao cadastrar categoria" }
+    if (resp.status !== 201) return {error : "Erro ao cadastrar filme" }
 
-    revalidatePath("/categorias")
+    revalidatePath("/filmes")
 }

@@ -30,7 +30,8 @@ public class CategoriaController {
 
     @GetMapping("/categorias")
     public List<Categoria> listAll() {
-       return categoriaRepository.findAll();
+        log.info("Buscando Todas as Categorias");
+        return categoriaRepository.findAll();
     }
 
     @GetMapping("/categorias/{id}")

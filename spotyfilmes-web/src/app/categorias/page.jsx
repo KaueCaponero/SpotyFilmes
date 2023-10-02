@@ -7,13 +7,13 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 
 async function carregarDados() {
   const url = "http://localhost:8080/categorias"
-  const resp = await fetch(url, {next: {revalidate: 0}})
+  const resp = await fetch(url)
 
   if (resp.status !== 200) {
-    alert("Erro ao buscar dados das categorias.")
+    toast.error("Erro ao buscar dados das categorias.")
     return
   }
-
+  
   return await resp.json();
 }
 
