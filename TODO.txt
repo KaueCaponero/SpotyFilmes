@@ -1,1 +1,1 @@
-- Replicar a página de cadastro de nova categoria para filmes (além de actions)
+- No cadastro de filme precisamos colocar um select de categorias para funcionar
