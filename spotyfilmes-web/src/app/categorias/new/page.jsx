@@ -9,6 +9,7 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 import { useRouter } from "next/navigation";
 
 import toast from "react-hot-toast";
+import SelectRating from "@/components/select-rating";
 
 export default function CategoriaNew() {
 
@@ -36,7 +37,7 @@ export default function CategoriaNew() {
                         <InputText name="nome" placeholder="Nome: "/>
                         <InputText name="url_imagem" placeholder="URL da Imagem: "/>
                         <InputText name="descricao" placeholder="Descrição: "/>
-                        <InputText name="classificacao" placeholder="Classificação: "/>
+                        <SelectRating name="classificacao" placeholder="Classificação: "/>
                         <Button type="button" icon={<PlusIcon className="h-6 w-6" />}>
                             Salvar Categoria
                         </Button>
