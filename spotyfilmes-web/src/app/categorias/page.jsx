@@ -21,6 +21,19 @@ export default async function PageCategorias() {
 
   const categorias = await carregarDados();
 
+  const categoriasPorLinha = 3;
+
+  const categoriasDivididas = categorias.reduce((acumulador, categoria, index) => {
+    const linhaAtual = Math.floor(index / categoriasPorLinha);
+
+    if (!acumulador[linhaAtual]) {
+      acumulador[linhaAtual] = [];
+    }
+
+    acumulador[linhaAtual].push(categoria);
+    return acumulador;
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -33,7 +46,13 @@ export default async function PageCategorias() {
           </Button>
         </div>
         <div className="space-y-2">
-          {categorias.map(categoria => <DataRow key={categoria.id} categoria={categoria} />)}
+          {categoriasDivididas.map((linha, index) => (
+            <div key={index} className="flex space-x-2">
+              {linha.map((categoria) => (
+                <DataRow key={categoria.id} categoria={categoria} />
+              ))}
+            </div>
+          ))}
         </div>
       </main>
     </>

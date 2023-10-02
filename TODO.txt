@@ -1,3 +1,1 @@
 - Replicar a página de cadastro de nova categoria para filmes (além de actions)
-- Corrigir alinhamento do DataRow
-- Corrigir tamanho do input do filter
