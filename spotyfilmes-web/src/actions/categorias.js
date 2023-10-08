@@ -15,7 +15,13 @@ export async function create(data) {
 
     const resp = await fetch(url, options)
 
-    if (resp.status !== 201) return {error : "Erro ao cadastrar categoria" }
+    if (resp.status !== 201) {
+        const message = await resp.json()
+        return {
+            error: "Erro ao Cadastrar Categoria",
+            message
+        }
+    }
 
     revalidatePath("/categorias")
 }
