@@ -38,7 +38,7 @@ export default function CategoriaNew() {
                     <h2 className="text-xl font-bold">Cadastrar Categoria</h2>
                     <form action ={onSubmit} className="flex flex-col items-center gap-5 mt-5">
                         <InputText name="nome" placeholder="Nome: "/>
-                        <span>{errorMessage.find(m => m.field === "nome")?.message}</span>
+                        <span className="text-red-500">{errorMessage.find(m => m.field === "nome")?.message}</span>
                         <InputText name="url_imagem" placeholder="URL da Imagem: "/>
                         <InputText name="descricao" placeholder="Descrição: "/>
                         <SelectRatingStars name="classificacao"/>

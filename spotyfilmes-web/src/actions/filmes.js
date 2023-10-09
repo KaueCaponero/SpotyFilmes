@@ -2,9 +2,9 @@
 
 import { revalidatePath } from "next/cache"
 
-export async function create(data) {
-    const url = "http://localhost:8080/filmes"
+const url = "http://localhost:8080/filmes"
 
+export async function create(data) {
     const options = {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(data)),
@@ -24,4 +24,19 @@ export async function create(data) {
     }
 
     revalidatePath("/filmes")
+}
+
+export async function destroy(id) {
+    const options = {
+        method: "DELETE"
+    }
+
+    const resp = await fetch(url + "/" + id, options)
+
+    if (resp.status !== 204) {
+        return { error: "Erro ao Deletar Filme"}
+    }
+
+    revalidatePath("/filmes")
+
 }
