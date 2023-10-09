@@ -3,6 +3,7 @@
 import { StarIcon, HeartIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import { destroy } from '@/actions/filmes'
+import { useRouter } from "next/navigation";
 
 export default function DataRow({ filme }) {
 
@@ -10,8 +11,14 @@ export default function DataRow({ filme }) {
 
     const [imagemCarregada, setImagemCarregada] = useState(true);
 
+    const { push } = useRouter()
+
     const handleDelete = () => {
 		destroy(categoria.id)
+	}
+
+    const handleEdit = () => {
+		push("/categorias/" + filme.id)
 	}
 
     useEffect(() => {
@@ -57,7 +64,7 @@ export default function DataRow({ filme }) {
             </div>
             <div className="w-1/8 flex flex-col justify-center items-center gap-10">
 				<button><HeartIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
-				<button><PencilIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
+				<button ondclick={handleEdit}><PencilIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
 				<button onClick={handleDelete}><TrashIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
 			</div>
         </div>

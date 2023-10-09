@@ -40,3 +40,31 @@ export async function destroy(id) {
     revalidatePath("/filmes")
 
 }
+
+export async function get(id) {
+    const resp = await fetch(url + "/" + id)
+
+    if (resp.status !== 200) {
+        return { error: "Filme não Encontrado"}
+    }
+
+    return await resp.json()
+}
+
+export async function update(filme) {
+    const options = {
+        method: "PUT",
+        body: JSON.stringify(filme),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    const resp = await fetch(url + "/" + filme.id, options)
+
+    if (resp.status !== 200) {
+        return { error: "Filme não Encontrado"}
+    }
+
+    revalidatePath("/filmes")
+}
