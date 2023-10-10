@@ -48,7 +48,7 @@ export default function FormEdit({categoria}) {
                         <span className="text-red-500">{errorMessage.find(m => m.field === "nome")?.message}</span>
                         <InputText name="url_imagem" placeholder="URL da Imagem: " value={categoriaEdit.url_imagem} onChange={(e) => handleFieldChange("url_imagem", e.target.value)}/>
                         <InputText name="descricao" placeholder="Descrição: " value={categoriaEdit.descricao} onChange={(e) => handleFieldChange("descricao", e.target.value)}/>
-                        <SelectRatingStars name="classificacao" value={categoriaEdit.value} onChange={(e) => handleFieldChange("classificacao", e.target.value)} />
+                        <SelectRatingStars name="classificacao" value={categoriaEdit.classificacao} onChange={(e) => handleFieldChange("classificacao", e.target.value)} />
                         <Button type="button" icon={<PlusIcon className="h-6 w-6" />}>
                             Salvar Categoria
                         </Button>
