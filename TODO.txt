@@ -1,5 +1,4 @@
 - No cadastro de filme precisamos colocar um select de categorias para funcionar
 - Arrumar formatação do <span> ao cadastrar Categoria e Filme
 - Form de editar categoria vem com os dados antigos, não atualizando a cada edição
-- Não edita a classificação
-- replicar a pasta id para filmes
+- Replicar a pasta id para filmes

@@ -28,7 +28,7 @@ export default function FormEdit({categoria}) {
             return
         }
 
-        toast.success("Categoria cadastrada com sucesso!")
+        toast.success("Categoria atualizada com sucesso!")
         push("/categorias")
     }
 
