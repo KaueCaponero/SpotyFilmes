@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 
-export default function SelectRatingStars({ value }) {
+export default function SelectRatingStars({ name, value, onChange }) {
     const [hoveredIndex, setHoveredIndex] = useState(-1);
     const [paintedStars, setPaintedStars] = useState(value || 0);
 
@@ -37,12 +37,16 @@ export default function SelectRatingStars({ value }) {
         } else {
             setPaintedStars(index + 1);
         }
+
+        if (onChange) {
+            onChange(index + 1);
+        }
     };
 
     return (
         <>
-            <label htmlFor="classificacao">Rating: </label>
-            <input type="hidden" name="classificacao" value={paintedStars} />
+            <label htmlFor={name}>Rating: </label>
+            <input type="hidden" name={name} value={paintedStars} />
             <div className="flex gap-1">{paintStars()}</div>
         </>
     );
