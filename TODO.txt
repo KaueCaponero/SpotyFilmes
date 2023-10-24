@@ -2,3 +2,4 @@
 - Arrumar formatação do <span> ao cadastrar Categoria e Filme
 - Form de editar categoria vem com os dados antigos, não atualizando a cada edição
 - Replicar a pasta id para filmes
+- Continuar a partir do tempo 54 min... restando 38 min no vidoe do Natan

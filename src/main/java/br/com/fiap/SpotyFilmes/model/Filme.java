@@ -13,7 +13,7 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +32,7 @@ public class Filme {
     @Column(name = "ID_FILME", nullable = false)
     private Long id;
 
+    @NotNull
     @NotBlank
     @Column(name = "NM_FILME", nullable = false)
     private String nome;
@@ -47,7 +48,33 @@ public class Filme {
     @Column(name = "CLS_FILME")
     private Long classificacao;
     
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "CAT_FILME")
     private Categoria categoria;
+
+    public Filme withNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Filme withUrlImagem(String url_imagem) {
+        this.url_imagem = url_imagem;
+        return this;
+    }
+
+    public Filme withDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public Filme withClassificacao(Long classificacao) {
+        this.classificacao = classificacao;
+        return this;
+    }
+
+    public Filme withCategoria(Categoria categoria) {
+        this.categoria = categoria;
+        return this;
+    }
 }

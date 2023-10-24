@@ -14,11 +14,11 @@ export default function DataRow({ filme }) {
     const { push } = useRouter()
 
     const handleDelete = () => {
-		destroy(categoria.id)
+		destroy(filme.id)
 	}
 
     const handleEdit = () => {
-		push("/categorias/" + filme.id)
+		push("/filmes/" + filme.id)
 	}
 
     useEffect(() => {
@@ -59,12 +59,12 @@ export default function DataRow({ filme }) {
             <div className="w-3/8 flex flex-col justify-center items-center gap-10">
                 <h2 className="font-bold">{filme.nome}</h2>
                 <p>{filme.descricao}</p>
-                <p>{filme.categoria}</p>
+                <p>{filme.categoria.nome}</p>
                 <div className="flex gap-1">{pintarEstrelas()}</div>
             </div>
             <div className="w-1/8 flex flex-col justify-center items-center gap-10">
 				<button><HeartIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
-				<button ondclick={handleEdit}><PencilIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
+				<button onClick={handleEdit}><PencilIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
 				<button onClick={handleDelete}><TrashIcon className="h-6 w-6 text-orange-200 hover:text-orange-500 transition-colors" /></button>
 			</div>
         </div>
