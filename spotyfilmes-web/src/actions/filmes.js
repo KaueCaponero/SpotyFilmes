@@ -34,7 +34,7 @@ export async function destroy(id) {
     const resp = await fetch(url + "/" + id, options)
 
     if (resp.status !== 204) {
-        return { error: "Erro ao Deletar Filme"}
+        return { error: "Erro ao Deletar Filme" }
     }
 
     revalidatePath("/filmes")
@@ -45,7 +45,7 @@ export async function get(id) {
     const resp = await fetch(url + "/" + id)
 
     if (resp.status !== 200) {
-        return { error: "Filme não Encontrado"}
+        return { error: "Filme não Encontrado" }
     }
 
     return await resp.json()
@@ -63,7 +63,7 @@ export async function update(filme) {
     const resp = await fetch(url + "/" + filme.id, options)
 
     if (resp.status !== 200) {
-        return { error: "Filme não Encontrado"}
+        return { error: "Filme não Encontrado" }
     }
 
     revalidatePath("/filmes")

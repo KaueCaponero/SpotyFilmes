@@ -34,7 +34,7 @@ export async function destroy(id) {
     const resp = await fetch(url + "/" + id, options)
 
     if (resp.status !== 204) {
-        return { error: "Erro ao Deletar Categoria"}
+        return { error: "Erro ao Deletar Categoria" }
     }
 
     revalidatePath("/categorias")
@@ -45,7 +45,7 @@ export async function get(id) {
     const resp = await fetch(url + "/" + id)
 
     if (resp.status !== 200) {
-        return { error: "Categoria não Encontrada"}
+        return { error: "Categoria não Encontrada" }
     }
 
     return await resp.json()
@@ -63,7 +63,7 @@ export async function update(categoria) {
     const resp = await fetch(url + "/" + categoria.id, options)
 
     if (resp.status !== 200) {
-        return { error: "Categoria não Encontrada"}
+        return { error: "Categoria não Encontrada" }
     }
 
     revalidatePath("/categorias")

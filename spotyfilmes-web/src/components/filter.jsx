@@ -8,7 +8,7 @@ export default function Filter() {
         <>
             <main className="flex justify-end bg-black rounded p-1 mt-10 mx-auto max-w-7xl">
                 <div className="m-2">
-                <InputText placeholder="Buscar: "/>
+                    <InputText placeholder="Buscar: " />
                 </div>
                 <div className="flex justify-between m-2 gap-4 items-center">
                     <Button icon={<ChevronDownIcon className="h-6 w-6" />}>

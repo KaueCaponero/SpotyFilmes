@@ -45,7 +45,6 @@ export default function SelectRatingStars({ name, value, onChange }) {
 
     return (
         <>
-            <label htmlFor={name}>Rating: </label>
             <input type="hidden" name={name} value={paintedStars} />
             <div className="flex gap-1">{paintStars()}</div>
         </>

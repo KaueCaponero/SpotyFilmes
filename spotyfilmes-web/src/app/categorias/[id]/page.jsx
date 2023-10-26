@@ -3,7 +3,7 @@ import FormEdit from "./form";
 
 import { get } from "@/actions/categorias";
 
-export default async function CategoriaEdit({params}) {
+export default async function CategoriaEdit({ params }) {
 
     console.log("CategoriaEdit - params.id:", params.id);
     const categoria = await get(params.id);
@@ -12,7 +12,7 @@ export default async function CategoriaEdit({params}) {
     return (
         <>
             <NavBar />
-            <FormEdit categoria={categoria}/>
+            <FormEdit categoria={categoria} />
         </>
     );
 }
