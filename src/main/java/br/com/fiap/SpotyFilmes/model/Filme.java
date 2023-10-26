@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_FILME", uniqueConstraints = {
-    @UniqueConstraint(name = "UK_NM_FILME", columnNames = "NM_FILME")
+        @UniqueConstraint(name = "UK_NM_FILME", columnNames = "NM_FILME")
 })
 public class Filme {
 
@@ -47,7 +47,7 @@ public class Filme {
     @Max(value = 5, message = "O valor máximo da classificação é 5.")
     @Column(name = "CLS_FILME")
     private Long classificacao;
-    
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "CAT_FILME")

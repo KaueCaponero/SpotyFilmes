@@ -19,18 +19,15 @@ public class CategoriaService {
     public List<TotalCategoria> getTotalPorCategoria() {
         var filmes = filmeRepository.findAll();
         var totais = filmes.stream()
-            .collect(
-                Collectors.groupingBy(
-                    Filme::getCategoria,
-                    Collectors.reducing(0L, e -> 1L, Long::sum)
-                )
-            )
-            .entrySet()
-            .stream()
-            .map(e -> new TotalCategoria(e.getKey().getNome(), e.getValue()))
-            .collect(Collectors.toList())
-        ;
+                .collect(
+                        Collectors.groupingBy(
+                                Filme::getCategoria,
+                                Collectors.reducing(0L, e -> 1L, Long::sum)))
+                .entrySet()
+                .stream()
+                .map(e -> new TotalCategoria(e.getKey().getNome(), e.getValue()))
+                .collect(Collectors.toList());
         return totais;
     }
-    
+
 }

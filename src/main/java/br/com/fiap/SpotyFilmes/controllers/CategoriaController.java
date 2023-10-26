@@ -55,7 +55,8 @@ public class CategoriaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Categoria> updateCategoria(@PathVariable @Valid Long id, @RequestBody Categoria categoria_atualizar){
+    public ResponseEntity<Categoria> updateCategoria(@PathVariable @Valid Long id,
+            @RequestBody Categoria categoria_atualizar) {
         log.info("Atualizando a Categoria de ID: " + id);
         getCategoriaById(id);
         categoria_atualizar.setId(id);
@@ -76,7 +77,8 @@ public class CategoriaController {
         return ResponseEntity.ok(lista);
     }
 
-    private Categoria getCategoriaById(Long id){
-        return categoriaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id));
+    private Categoria getCategoriaById(Long id) {
+        return categoriaRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id));
     }
 }

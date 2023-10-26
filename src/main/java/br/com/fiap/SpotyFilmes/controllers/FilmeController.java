@@ -52,20 +52,22 @@ public class FilmeController {
         log.info("Cadastrando Filme: " + novo_filme);
         Long id_categoria = novo_filme.getCategoria().getId();
         Categoria categoria = categoriaRepository.findById(id_categoria)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id_categoria));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Categoria não encontrada com o ID: " + id_categoria));
         novo_filme.setCategoria(categoria);
         filmeRepository.save(novo_filme);
         return ResponseEntity.status(HttpStatus.CREATED).body(novo_filme);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Filme> updateFilme(@PathVariable @Valid Long id, @RequestBody Filme filme_atualizar){
+    public ResponseEntity<Filme> updateFilme(@PathVariable @Valid Long id, @RequestBody Filme filme_atualizar) {
         log.info("Atualizando o Filme de ID: " + id);
         getFilmeById(id);
         filme_atualizar.setId(id);
         Long novaCategoriaId = filme_atualizar.getCategoria().getId();
         Categoria novaCategoria = categoriaRepository.findById(novaCategoriaId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + novaCategoriaId));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Categoria não encontrada com o ID: " + novaCategoriaId));
         filme_atualizar.setCategoria(novaCategoria);
         filmeRepository.save(filme_atualizar);
         return ResponseEntity.ok(filme_atualizar);
@@ -75,10 +77,11 @@ public class FilmeController {
     public ResponseEntity<Filme> deleteFilme(@PathVariable Long id) {
         log.info("Deletando o Filme de ID: " + id);
         filmeRepository.delete(getFilmeById(id));
-        return ResponseEntity.noContent().build();       
+        return ResponseEntity.noContent().build();
     }
 
-    private Filme getFilmeById(Long id){
-        return filmeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado com o ID: " + id));
+    private Filme getFilmeById(Long id) {
+        return filmeRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filme não encontrado com o ID: " + id));
     }
 }
