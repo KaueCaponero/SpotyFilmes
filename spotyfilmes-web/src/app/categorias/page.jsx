@@ -49,7 +49,9 @@ export default async function PageCategorias() {
           {categoriasDivididas.map((linha, index) => (
             <div key={index} className="flex space-x-2">
               {linha.map((categoria) => (
-                <DataRow key={categoria.id} categoria={categoria} />
+                <div key={categoria.id} className="w-1/3 p-2">
+                  <DataRow categoria={categoria} />
+                </div>
               ))}
             </div>
           ))}

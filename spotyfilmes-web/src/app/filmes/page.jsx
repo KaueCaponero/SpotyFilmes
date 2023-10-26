@@ -49,7 +49,9 @@ export default async function PageFilmes() {
           {filmesDivididos.map((linha, index) => (
             <div key={index} className="flex space-x-2">
               {linha.map((filme) => (
-                <DataRow key={filme.id} filme={filme} />
+                <div key={filme.id} className="w-1/3 p-2">
+                  <DataRow filme={filme} />
+                </div>
               ))}
             </div>
           ))}

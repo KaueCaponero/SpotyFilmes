@@ -1,4 +1,3 @@
 - No cadastro de filme precisamos colocar um select de categorias para funcionar
 - Form de editar categoria vem com os dados antigos, não atualizando a cada edição
-- Arrumar tamanho da imagem 
 - Replicar a pasta id para filmes
