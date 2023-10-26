@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,6 +25,7 @@ import br.com.fiap.SpotyFilmes.repository.CategoriaRepository;
 import br.com.fiap.SpotyFilmes.repository.FilmeRepository;
 
 @RestController
+@RequestMapping("filmes")
 @Slf4j
 public class FilmeController {
 
@@ -33,43 +35,43 @@ public class FilmeController {
     @Autowired
     CategoriaRepository categoriaRepository;
 
-    @GetMapping("/filmes")
+    @GetMapping
     public List<Filme> listAll() {
         log.info("Buscando Todos os Filmes");
         return filmeRepository.findAll();
     }
 
-    @GetMapping("/filmes/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Filme> readFilme(@PathVariable Long id) {
         log.info("Exibindo o Filme de ID: " + id);
         return ResponseEntity.ok(getFilmeById(id));
     }
 
-    @PostMapping("/filmes")
+    @PostMapping
     public ResponseEntity<Filme> createFilme(@RequestBody @Valid Filme novo_filme) {
         log.info("Cadastrando Filme: " + novo_filme);
         Long id_categoria = novo_filme.getCategoria().getId();
         Categoria categoria = categoriaRepository.findById(id_categoria)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id_categoria));
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + id_categoria));
         novo_filme.setCategoria(categoria);
         filmeRepository.save(novo_filme);
         return ResponseEntity.status(HttpStatus.CREATED).body(novo_filme);
     }
 
-    @PutMapping("/filmes/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Filme> updateFilme(@PathVariable @Valid Long id, @RequestBody Filme filme_atualizar){
         log.info("Atualizando o Filme de ID: " + id);
         getFilmeById(id);
         filme_atualizar.setId(id);
         Long novaCategoriaId = filme_atualizar.getCategoria().getId();
         Categoria novaCategoria = categoriaRepository.findById(novaCategoriaId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + novaCategoriaId));
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada com o ID: " + novaCategoriaId));
         filme_atualizar.setCategoria(novaCategoria);
         filmeRepository.save(filme_atualizar);
         return ResponseEntity.ok(filme_atualizar);
     }
 
-    @DeleteMapping("/filmes/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Filme> deleteFilme(@PathVariable Long id) {
         log.info("Deletando o Filme de ID: " + id);
         filmeRepository.delete(getFilmeById(id));
