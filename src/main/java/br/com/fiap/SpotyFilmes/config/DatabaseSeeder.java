@@ -20,12 +20,12 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     FilmeRepository filmeRepository;
 
-    private Categoria acao = new Categoria(null, "Ação",
+        private Categoria acao = new Categoria(null, "Ação",
             "https://radiomixfm.com.br/wp-content/uploads/2019/10/jogos-e1572042158905.jpg", "Filmes de Ação", 5L);
-    private Categoria comedia = new Categoria(null, "Comédia",
+        private Categoria comedia = new Categoria(null, "Comédia",
             "https://i.zst.com.br/images/os-6-melhores-filmes-de-comedia-para-assistir-em-2018-photo634743819-44-2-16.jpg",
             "Filmes de Comédia", 3L);
-    private Categoria terror = new Categoria(null, "Terror",
+        private Categoria terror = new Categoria(null, "Terror",
             "https://s2.glbimg.com/6bdF931FVRp14rIwXthH_vsxE8k=/e.glbimg.com/og/ed/f/original/2019/09/05/it-chapter-two-box-office-predictions-.jpg",
             "Filmes de Terror", 2L);
 
@@ -59,6 +59,22 @@ public class DatabaseSeeder implements CommandLineRunner {
                                 .withDescricao(
                                         "Confusão é o que não falta no prédio onde Waldisney (Alexandre Lino) trabalha como porteiro")
                                 .withClassificacao(2L)
+                                .withCategoria(comedia),
+
+                        new Filme()
+                                .withNome("Não Abra!")
+                                .withUrlImagem("https://capas-m.imagemfilmes.com.br/164115_000_m.jpg")
+                                .withDescricao(
+                                        "Sam (Megan Suri), uma adolescente que lida com os conflitos entre sua origem indiana e a vida nos EUA, acidentalmente liberta uma antiga entidade demoníaca de um jarro que jamais deveria ter sido aberto.")
+                                .withClassificacao(0L)
+                                .withCategoria(terror),
+
+                        new Filme()
+                                .withNome("Nina: A Heroína dos Sete Mares")
+                                .withUrlImagem("https://capas-m.imagemfilmes.com.br/164097_000_m.jpg")
+                                .withDescricao(
+                                        "Nina é uma ratinha aventureira que sonha em se tornar uma grande heroína.")
+                                .withClassificacao(4L)
                                 .withCategoria(comedia)));
     }
 }

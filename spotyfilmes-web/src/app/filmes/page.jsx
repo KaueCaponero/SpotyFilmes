@@ -23,7 +23,7 @@ export default async function PageFilmes() {
 
     const filmesPorLinha = 3;
 
-    const filmesDivididos = filmes.reduce((acumulador, filme, index) => {
+    const filmesDivididos = filmes.content.reduce((acumulador, filme, index) => {
         const linhaAtual = Math.floor(index / filmesPorLinha);
 
         if (!acumulador[linhaAtual]) {

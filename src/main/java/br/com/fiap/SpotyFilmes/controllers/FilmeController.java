@@ -1,12 +1,14 @@
 package br.com.fiap.SpotyFilmes.controllers;
 
-import java.util.List;
-
 import jakarta.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -36,9 +39,14 @@ public class FilmeController {
     CategoriaRepository categoriaRepository;
 
     @GetMapping
-    public List<Filme> listAll() {
+    public Page<Filme> listAll(
+        @PageableDefault(size = 9, sort = "id", direction = Sort.Direction.DESC) Pageable pageRequest, 
+        @RequestParam(required = false) String nome
+    ) {
         log.info("Buscando Todos os Filmes");
-        return filmeRepository.findAll();
+        if (nome == null || nome.isEmpty())
+            return filmeRepository.findAll(pageRequest);
+        return filmeRepository.findByNomeContainingIgnoreCase(nome, pageRequest);
     }
 
     @GetMapping("{id}")

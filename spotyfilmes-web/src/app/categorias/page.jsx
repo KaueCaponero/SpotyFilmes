@@ -23,7 +23,7 @@ export default async function PageCategorias() {
 
     const categoriasPorLinha = 3;
 
-    const categoriasDivididas = categorias.reduce((acumulador, categoria, index) => {
+    const categoriasDivididas = categorias.content.reduce((acumulador, categoria, index) => {
         const linhaAtual = Math.floor(index / categoriasPorLinha);
 
         if (!acumulador[linhaAtual]) {
