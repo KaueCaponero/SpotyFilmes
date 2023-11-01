@@ -1,3 +1,2 @@
 - Colocar valores de categorias no select do newFilmes;
-- Form de editar categoria vem com os dados antigos, não atualizando a cada edição
 - Replicar a pasta id para filmes

@@ -5,7 +5,7 @@ import DataRow from "@/app/categorias/datarow"
 
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-async function carregarDados() {
+async function carregarCategorias() {
     const url = "http://localhost:8080/categorias"
     const resp = await fetch(url)
 
@@ -19,7 +19,7 @@ async function carregarDados() {
 
 export default async function PageCategorias() {
 
-    const categorias = await carregarDados();
+    const categorias = await carregarCategorias();
 
     const categoriasPorLinha = 3;
 

@@ -1,3 +1,9 @@
+const categorias = [
+    { id: 1, nome: 'Categoria 1' },
+    { id: 2, nome: 'Categoria 2' },
+    { id: 3, nome: 'Categoria 3' },
+];
+
 export default function SelectCategoria({ name, placeholder }) {
     return (
         <div className="flex flex-col gap-1">
@@ -5,8 +11,11 @@ export default function SelectCategoria({ name, placeholder }) {
                 <option value="">
                     {placeholder}
                 </option>
-                <option value="1">Opção 1</option>
-                <option value="2">Opção 2</option>
+                {categorias.map((categoria) => (
+                    <option key={categoria.id} value={categoria.id}>
+                        {categoria.nome}
+                    </option>
+                ))}
             </select>
         </div>
     );
