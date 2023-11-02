@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache"
 const url = "http://localhost:8080/filmes"
 
 export async function create(data) {
+    console.log(data)
     const options = {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(data)),

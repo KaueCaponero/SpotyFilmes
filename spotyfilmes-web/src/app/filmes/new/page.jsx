@@ -20,11 +20,11 @@ export default function FilmeNew() {
 
     async function onSubmit(formData) {
         const resp = await create(formData)
-
+        
         if (resp?.error) {
-            toast.error(resp.error)
-            setErrorMessage(resp.message)
-            return
+            toast.error(resp.error);
+            setErrorMessage(Array.isArray(resp.message) ? resp.message : [resp.message]);
+            return;
         }
 
         toast.success("Filme cadastrado com sucesso!")

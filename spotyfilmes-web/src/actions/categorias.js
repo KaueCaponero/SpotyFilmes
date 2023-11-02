@@ -4,6 +4,26 @@ import { revalidatePath } from "next/cache"
 
 const url = "http://localhost:8080/categorias"
 
+export async function getCategorias() {
+
+    try {
+        const response = await fetch(url);
+
+        if (response.status !== 200) {
+            toast.error("Erro ao buscar dados das categorias.");
+            return;
+        }
+
+        const data = await response.json();
+        return data.content;
+        
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        toast.error("Erro ao buscar dados das categorias.");
+        return null;
+    }
+}
+
 export async function create(data) {
     const options = {
         method: "POST",
