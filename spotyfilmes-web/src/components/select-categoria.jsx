@@ -2,33 +2,38 @@ import { useState, useEffect } from "react";
 
 import { getCategorias } from "@/actions/categorias";
 
-export default function SelectCategoria({ name, placeholder }) {
-
-    const [categorias, setCategorias] = useState([])
-    const [categoria, setCategoria] = useState(null)
+export default function SelectCategoria({ name, value, placeholder }) {
+    const [categorias, setCategorias] = useState([]);
+    const [categoria, setCategoria] = useState(value || '');
 
     useEffect(() => {
         async function fetchCategorias() {
             try {
                 setCategorias(await getCategorias());
             } catch (error) {
-                toast.error("Erro ao buscar dados das categorias.")
+                toast.error("Erro ao buscar dados das categorias.");
             }
         }
 
         fetchCategorias();
     }, []);
 
-    useEffect(() => {
-        console.log(categoria)
-    }, [categoria]);
+    const handleCategoriaChange = (e) => {
+        const selectedCategoryId = e.target.value;
+        setCategoria(selectedCategoryId);
+    };
 
     return (
         <div className="flex flex-col gap-1">
-            <select name={name} onChange={(e) => {setCategoria({categoria:{id: e.target.value}})}} className="bg-orange-200 text-orange-500 p-1 rounded focus:outline-orange-500  placeholder-orange-500">
-                <option value="">
-                    {placeholder}
-                </option>
+            <select
+                name={name}
+                value={categoria}
+                onChange={handleCategoriaChange}
+                className="bg-orange-200 text-orange-500 p-1 rounded focus:outline-orange-500 placeholder-orange-500"
+            >
+                {placeholder && (
+                    <option value="">{placeholder}</option>
+                )}
                 {categorias.map((categoria) => (
                     <option key={categoria.id} value={categoria.id}>
                         {categoria.nome}

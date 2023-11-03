@@ -1,1 +1,1 @@
-- Replicar a pasta id para filmes
+- Atualizar categoria do filme, ao atualizar o filme, não funciona... verificar na page id do filme porque o on change não funciona

@@ -69,6 +69,7 @@ export async function get(id) {
 }
 
 export async function update(filme) {
+    console.log(filme)
     const options = {
         method: "PUT",
         body: JSON.stringify(filme),
