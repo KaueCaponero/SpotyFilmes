@@ -1,2 +1,1 @@
-- Colocar valores de categorias no select do newFilmes;
 - Replicar a pasta id para filmes

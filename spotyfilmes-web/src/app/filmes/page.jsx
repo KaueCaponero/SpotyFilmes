@@ -5,7 +5,7 @@ import DataRow from "@/app/filmes/datarow"
 
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-async function carregarDados() {
+async function carregarFilmes() {
     const url = "http://localhost:8080/filmes"
     const resp = await fetch(url)
 
@@ -19,7 +19,7 @@ async function carregarDados() {
 
 export default async function PageFilmes() {
 
-    const filmes = await carregarDados();
+    const filmes = await carregarFilmes();
 
     const filmesPorLinha = 3;
 

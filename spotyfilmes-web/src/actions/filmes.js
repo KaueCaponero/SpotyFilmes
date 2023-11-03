@@ -4,11 +4,27 @@ import { revalidatePath } from "next/cache"
 
 const url = "http://localhost:8080/filmes"
 
+function formatFormData(formData) {
+    const formattedData = {};
+
+    formData.forEach((value, key) => {
+        if (key === 'categoria') {
+            formattedData[key] = { id: parseInt(value) };
+        } else {
+            formattedData[key] = value;
+        }
+    });
+
+    return formattedData;
+}
+
 export async function create(data) {
-    console.log(data)
+    
+    const formattedData = formatFormData(data);
+
     const options = {
         method: "POST",
-        body: JSON.stringify(Object.fromEntries(data)),
+        body: JSON.stringify(formattedData),
         headers: {
             "Content-Type": "application/json"
         }
