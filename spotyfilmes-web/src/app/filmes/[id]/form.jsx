@@ -34,19 +34,19 @@ export default function FormEdit({ filme }) {
     }
 
     function handleFieldChange(field, value) {
-        if (field === 'categoria') {
-          const categoriaFormatada = { id: value };
+      if (field === 'categoria') {
+          const categoriaFormatada = { id: parseInt(value, 10) };
           setFilmeEdit({
-            ...filmeEdit,
-            categoria: categoriaFormatada
+              ...filmeEdit,
+              categoria: categoriaFormatada
           });
-        } else {
+      } else {
           setFilmeEdit({
-            ...filmeEdit,
-            [field]: value
+              ...filmeEdit,
+              [field]: value
           });
-        }
       }
+  }
 
     return (
         <main className="container bg-black mt-10 mx-auto rounded p-4 max-w-md">
