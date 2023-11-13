@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { getCategorias } from "@/actions/categorias";
 
-export default function SelectCategoria({ name, value, placeholder }) {
+export default function SelectCategoria({ name, value, placeholder, onChange }) {
     const [categorias, setCategorias] = useState([]);
     const [categoria, setCategoria] = useState(value || '');
 
@@ -21,6 +21,9 @@ export default function SelectCategoria({ name, value, placeholder }) {
     const handleCategoriaChange = (e) => {
         const selectedCategoryId = e.target.value;
         setCategoria(selectedCategoryId);
+        if (onChange) {
+            onChange(selectedCategoryId);
+        }
     };
 
     return (

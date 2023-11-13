@@ -1,6 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
+import toast from "react-hot-toast";
 
 const url = process.env.NEXT_PUBLIC_API_URL + "/filmes"
 
