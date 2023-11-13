@@ -13,14 +13,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TB_CATEGORIA", uniqueConstraints = {
+@Table(name = "SPOTYFILMES_CATEGORIA", uniqueConstraints = {
         @UniqueConstraint(name = "UK_NM_CATEGORIA", columnNames = "NM_CATEGORIA")
 })
 public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CATEGORIA", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SPOTYFILMES_SQ_CATEGORIA")
+    @SequenceGenerator(name = "SPOTYFILMES_SQ_CATEGORIA", sequenceName = "SPOTYFILMES_SQ_CATEGORIA", allocationSize = 1)
+    @Column(name = "ID_CATEGORIA", nullable = false)    
     private Long id;
 
     @NotNull

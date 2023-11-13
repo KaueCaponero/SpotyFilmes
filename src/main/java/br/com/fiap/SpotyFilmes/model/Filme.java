@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -22,14 +23,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TB_FILME", uniqueConstraints = {
+@Table(name = "SPOTYFILMES_FILME", uniqueConstraints = {
         @UniqueConstraint(name = "UK_NM_FILME", columnNames = "NM_FILME")
 })
 public class Filme {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_FILME", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SPOTYFILMES_SQ_FILME")
+    @SequenceGenerator(name = "SPOTYFILMES_SQ_FILME", sequenceName = "SPOTYFILMES_SQ_FILME", allocationSize = 1)
+    @Column(name = "ID_FILME", nullable = false)    
     private Long id;
 
     @NotNull
