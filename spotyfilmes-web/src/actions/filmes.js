@@ -86,3 +86,14 @@ export async function update(filme) {
 
     revalidatePath("/filmes")
 }
+
+export async function carregarFilmes() {
+    const resp = await fetch(url)
+
+    if (resp.status !== 200) {
+        toast.error("Erro ao buscar dados dos filmes.")
+        return
+    }
+
+    return await resp.json();
+}

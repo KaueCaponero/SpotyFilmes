@@ -2,20 +2,9 @@ import NavBar from "@/components/navbar";
 import Filter from "@/components/filter"
 import Button from "@/components/button";
 import DataRow from "@/app/categorias/datarow"
+import { carregarCategorias } from "@/actions/categorias";
 
 import { PlusIcon } from '@heroicons/react/24/solid';
-
-async function carregarCategorias() {
-    const url = "http://localhost:8080/categorias"
-    const resp = await fetch(url)
-
-    if (resp.status !== 200) {
-        toast.error("Erro ao buscar dados das categorias.")
-        return
-    }
-
-    return await resp.json();
-}
 
 export default async function PageCategorias() {
 

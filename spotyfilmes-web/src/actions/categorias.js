@@ -88,3 +88,14 @@ export async function update(categoria) {
 
     revalidatePath("/categorias")
 }
+
+export async function carregarCategorias() {
+    const resp = await fetch(url)
+
+    if (resp.status !== 200) {
+        toast.error("Erro ao buscar dados das categorias.")
+        return
+    }
+
+    return await resp.json();
+}

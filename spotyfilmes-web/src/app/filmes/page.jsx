@@ -2,20 +2,9 @@ import NavBar from "@/components/navbar";
 import Filter from "@/components/filter"
 import Button from "@/components/button";
 import DataRow from "@/app/filmes/datarow"
+import { carregarFilmes } from "@/actions/filmes";
 
 import { PlusIcon } from '@heroicons/react/24/solid';
-
-async function carregarFilmes() {
-    const url = "http://localhost:8080/filmes"
-    const resp = await fetch(url)
-
-    if (resp.status !== 200) {
-        toast.error("Erro ao buscar dados dos filmes.")
-        return
-    }
-
-    return await resp.json();
-}
 
 export default async function PageFilmes() {
 
