@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 
-const url = "http://localhost:8080/categorias"
+const url = process.env.NEXT_PUBLIC_API_URL + "/categorias"
 
 export async function getCategorias() {
 

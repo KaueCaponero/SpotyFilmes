@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 
-const url = "http://localhost:8080/filmes"
+const url = process.env.NEXT_PUBLIC_API_URL + "/filmes"
 
 function formatFormData(formData) {
     const formattedData = {};
