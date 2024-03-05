@@ -1,6 +1,11 @@
+"use client"
+
+import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function NavBar() {
+    const { user, login, logout } = useContext(AuthContext)
     return (
         <nav className=" flex justify-between bg-black p-6">
             <ul className="flex items-end gap-14">
@@ -23,8 +28,13 @@ export default function NavBar() {
                 </li>
             </ul>
 
-            <div className="h-10 w-10 rounded-full overflow-hidden">
-                <img src="https://avatars.githubusercontent.com/u/111543330?v=4" alt="img_perfil" />
+            <div>
+                <button onClick={() => login("kauecaponero@hotmail.com", "12345678")}>Login</button>
+                <button onClick={() => logout()}>Logout</button>
+                {user?.name}
+                <div className="h-10 w-10 rounded-full overflow-hidden">
+                    <img src="https://avatars.githubusercontent.com/u/111543330?v=4" alt="img_perfil" />
+                </div>
             </div>
         </nav>
     )
