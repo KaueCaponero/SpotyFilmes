@@ -19,17 +19,19 @@ export default function Home() {
   return (
     <>
     <div className="bg-black h-screen flex">
-      <aside className="hidden lg:flex">
-        <Image className="h-auto w-auto object-cover" src={login}/>
-      </aside>
-      <main className="flex flex-col mt-20 mx-auto rounded p-4 max-w-7xl"> 
-        <Image className ="mx-auto" src={logo}/>
-        <form className="flex flex-col gap-4 p-4 m-auto" onSubmit={handleSubmit(onSubmit)}>
+      <main className="flex flex-col items-center justify-center h-full mx-auto rounded p-4 max-w-md">
+        <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-4">
+            <Image className="mx-auto" src={logo} alt="Logo"/>
+          </div>
           <InputText placeholder="Email: " register={register} name="email"/>
           <InputText placeholder="Senha: " register={register} name="senha" type="password"/>
-          <Button type="button">Entrar</Button>
+          <Button type="submit">Entrar</Button>
         </form>
       </main>
+      <aside className="hidden lg:flex">
+        <Image className="h-auto w-auto object-cover" src={login} alt="Login"/>
+      </aside>
     </div>
     </>
   );
