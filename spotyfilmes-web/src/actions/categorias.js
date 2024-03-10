@@ -1,14 +1,23 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
+import { cookies } from "next/headers"
 import toast from "react-hot-toast";
 
 const url = process.env.NEXT_PUBLIC_API_URL + "/categorias"
 
+const token = cookies().get("spotyfilmes_jwt")?.value
+
 export async function getCategorias() {
 
+    const options = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, options);
 
         if (response.status !== 200) {
             toast.error("Erro ao buscar dados das categorias.");
@@ -30,7 +39,8 @@ export async function create(data) {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(data)),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     }
 
@@ -49,7 +59,10 @@ export async function create(data) {
 
 export async function destroy(id) {
     const options = {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
     }
 
     const resp = await fetch(url + "/" + id, options)
@@ -63,7 +76,14 @@ export async function destroy(id) {
 }
 
 export async function get(id) {
-    const resp = await fetch(url + "/" + id)
+
+    const options = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
+    const resp = await fetch(url + "/" + id, options)
 
     if (resp.status !== 200) {
         return { error: "Categoria não Encontrada" }
@@ -77,7 +97,8 @@ export async function update(categoria) {
         method: "PUT",
         body: JSON.stringify(categoria),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     }
 
@@ -94,15 +115,14 @@ export async function carregarCategorias() {
 
     const options = {
         headers: {
-            "Authorization": "application/json"
+            "Authorization": `Bearer ${token}`
         }
     }
 
     const resp = await fetch(url, options)
 
     if (resp.status !== 200) {
-        toast.error("Erro ao buscar dados das categorias.")
-        return
+        throw new Error(`Erro ao buscar dados das categorias: (${resp.status})`)
     }
 
     return await resp.json();

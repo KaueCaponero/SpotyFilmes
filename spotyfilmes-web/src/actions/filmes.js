@@ -1,9 +1,12 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
+import { cookies } from "next/headers"
 import toast from "react-hot-toast";
 
 const url = process.env.NEXT_PUBLIC_API_URL + "/filmes"
+
+const token = cookies().get("spotyfilmes_jwt")?.value
 
 function formatFormData(formData) {
     const formattedData = {};
@@ -27,7 +30,8 @@ export async function create(data) {
         method: "POST",
         body: JSON.stringify(formattedData),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     }
 
@@ -46,7 +50,10 @@ export async function create(data) {
 
 export async function destroy(id) {
     const options = {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }        
     }
 
     const resp = await fetch(url + "/" + id, options)
@@ -60,7 +67,14 @@ export async function destroy(id) {
 }
 
 export async function get(id) {
-    const resp = await fetch(url + "/" + id)
+
+    const options = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
+    const resp = await fetch(url + "/" + id, options)
 
     if (resp.status !== 200) {
         return { error: "Filme não Encontrado" }
@@ -75,7 +89,8 @@ export async function update(filme) {
         method: "PUT",
         body: JSON.stringify(filme),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     }
 
@@ -89,11 +104,17 @@ export async function update(filme) {
 }
 
 export async function carregarFilmes() {
-    const resp = await fetch(url)
+
+    const options = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
+    const resp = await fetch(url, options)
 
     if (resp.status !== 200) {
-        toast.error("Erro ao buscar dados dos filmes.")
-        return
+        throw new Error(`Erro ao buscar dados dos filmes: (${resp.status})`)
     }
 
     return await resp.json();

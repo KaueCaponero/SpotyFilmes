@@ -11,7 +11,8 @@ export async function apiLogin(email, senha) {
         body: JSON.stringify({email, senha}),
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        next: { revalidate: 0} 
     }
 
     const resp = await fetch(url, options)

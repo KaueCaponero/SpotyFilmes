@@ -37,6 +37,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<Token> login(@RequestBody Credenciais credenciais){
+        log.info("Recebendo Requisições de Login");
         log.info("Validando Credenciais: " + credenciais);
         authManager.authenticate(credenciais.toAuthentication());
         return ResponseEntity.ok(tokenService.generateToken(credenciais.email()));
