@@ -91,7 +91,14 @@ export async function update(categoria) {
 }
 
 export async function carregarCategorias() {
-    const resp = await fetch(url)
+
+    const options = {
+        headers: {
+            "Authorization": "application/json"
+        }
+    }
+
+    const resp = await fetch(url, options)
 
     if (resp.status !== 200) {
         toast.error("Erro ao buscar dados das categorias.")

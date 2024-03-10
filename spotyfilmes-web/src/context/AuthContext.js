@@ -1,6 +1,6 @@
 "use client"
 
-import { apiLogin } from "@/actions/user";
+import { apiLogin, apiLogout } from "@/actions/user";
 
 const { createContext, useState } = require("react");
 
@@ -10,17 +10,20 @@ export function AuthProvider({children}) {
     
     const [ user, setUser ] = useState(null)
 
-    const login = (email, senha) => {
-        if (email === "kauecaponero@hotmail.com") {
-            setUser({
-                email,
-                name: email
-            })
-        }
-        apiLogin(email, senha)
+    const login = async (email, senha) => {
+        const res = await apiLogin(email, senha)
+
+        if (res?.error) return res
+
+        setUser({
+            email
+        })
     }
 
-    const logout = () => setUser(null)
+    const logout = () => {
+        setUser(null)
+        apiLogout()
+    }
 
     return (
         <AuthContext.Provider value={{user, login, logout}}>

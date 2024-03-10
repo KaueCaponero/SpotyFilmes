@@ -17,7 +17,7 @@ export async function apiLogin(email, senha) {
     const resp = await fetch(url, options)
 
     if (resp.status !== 200) {
-        throw new Error("Falha no Login")
+        return {error: "Falha no Login."}
     }
 
     const json = await resp.json()
